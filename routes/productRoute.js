@@ -6,11 +6,12 @@ import {
   removeProduct,
 } from "../controllers/productController.js";
 import upload from "../middleware/multer.js";
+import { adminAuth } from "../middleware/adminAuth.js";
 
 const router = express.Router();
 
 router.post(
-  "/add",
+  "/add",adminAuth,
   upload.fields([
     { name: "image1", maxCount: 1 },
     { name: "image2", maxCount: 1 },
@@ -19,7 +20,7 @@ router.post(
   ]),
   addProduct
 );
-router.delete("/remove", removeProduct);
+router.delete("/remove", adminAuth ,removeProduct);
 router.get("/single", singleProduct);
 router.get("/list", listProducts);
 
