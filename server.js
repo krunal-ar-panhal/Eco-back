@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import connectCloudinary from "./config/cloudinary";
+import connectCloudinary from "./config/cloudinary.js";
+import userRouter from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("hello ji");
