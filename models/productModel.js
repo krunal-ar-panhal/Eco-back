@@ -10,11 +10,11 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   price: {
-    type: String,
+    type: Number,
     required: true,
   },
   image: {
-    type: String,
+    type: Array,
     required: true,
   },
   category: {
@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   sizes: {
-    type: String,
+    type: Array,
     required: true,
   },
   bestSeller: {
@@ -34,7 +34,7 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: String,
+    type: Number,
     required: true,
   },
 });
@@ -42,4 +42,4 @@ const productSchema = new mongoose.Schema({
 const productModel =
   mongoose.model.product || mongoose.model("product", productSchema);
 
-export default productSchema;
+export default productModel;

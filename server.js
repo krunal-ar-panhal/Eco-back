@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoutes.js";
+import productRouter from './routes/productRoute.js'
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ mongoose
   });
 
 app.use("/api/user", userRouter);
+app.use('/api/product',productRouter)
 
 app.get("/", (req, res) => {
   res.send("hello ji");
