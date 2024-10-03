@@ -25,6 +25,11 @@ export const loginUser = async (req, res) => {
         message : "user logged",
         token
       })
+    }else{
+      res.json({
+        success : false ,
+        messsage : 'invalid credential'
+      })
     }
   } catch (error) {
     console.log(error);
