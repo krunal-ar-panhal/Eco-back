@@ -10,16 +10,23 @@ export const addProduct = async (req, res) => {
       category,
       subCategory,
       sizes,
-      bestSeller,
+      bestseller,
     } = req.body;
     console.log("request body",req.body.price);
+
+    if (!name || !description || !price || !category || !subCategory || !sizes) {
+      return res.status(400).json({
+        success: false,
+        message: "Please fill in all required fields.",
+      });
+    }
 
     const image1 = req.files.image1 && req.files.image1[0];
     const image2 = req.files.image2 && req.files.image2[0];
     const image3 = req.files.image3 && req.files.image3[0];
     const image4 = req.files.image4 && req.files.image4[0];
 
-    const images = [image1, image2, image3, image4];
+    const images = [image1, image2, image3, image4].filter(item => item);
 
     let imageurl = await Promise.all(
       images.map(async (item) => {
@@ -36,7 +43,7 @@ export const addProduct = async (req, res) => {
       category,
       subCategory,
       price: Number(price),
-      bestSeller: bestSeller === "true" ? true : false,
+      bestseller: bestseller === "true" ? "true" : "false",
       sizes: JSON.parse(sizes),
       image: imageurl,
       date: Date.now(),
@@ -51,7 +58,7 @@ export const addProduct = async (req, res) => {
       category,
       subCategory,
       sizes,
-      bestSeller
+      bestseller
     );
     console.log(imageurl);
 
@@ -60,6 +67,7 @@ export const addProduct = async (req, res) => {
 
     return res.json({
         success : true,
+        product,
         message : "Product created successfully"
     });
   } catch (error) {
