@@ -20,7 +20,7 @@ router.post(
   ]),
   addProduct
 );
-router.delete("/remove", adminAuth ,removeProduct);
+router.delete("/remove/:id", adminAuth ,removeProduct);
 router.get("/single", singleProduct);
 router.get("/list", listProducts);
 

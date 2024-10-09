@@ -10,7 +10,7 @@ export const addProduct = async (req, res) => {
       category,
       subCategory,
       sizes,
-      bestseller,
+      bestseller, 
     } = req.body;
     console.log("request body",req.body.price);
 
@@ -74,7 +74,7 @@ export const addProduct = async (req, res) => {
     console.log(error);
     return res.json({
       success: false,
-      message: error.message,
+      message: error.message  ,
     });
   }
 };
@@ -98,7 +98,7 @@ export const listProducts = async (req, res) => {
 
 export const removeProduct = async (req, res) => {
     try {
-        await productModel.findByIdAndDelete(req.body.id)
+        await productModel.findByIdAndDelete(req.params.id)
         return res.json({
             success : true,
             message : "product deleted successfully"
